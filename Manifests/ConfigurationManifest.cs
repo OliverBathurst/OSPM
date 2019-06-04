@@ -15,7 +15,6 @@ public class ConfigurationManifest : IManifest{
     //instance of "regpath1" in the filepath to the filepath declared in the reg key
     public Dictionary<string, string> CustomRegistryPaths { get; set; }
     public string LicenseKey { get; set; }
-    public bool? CompressionEnabled { get; set; }
     public bool? IgnoreWarnings { get; set; }
     public ConnectionInfoManifest ConnectionInfo { get; set; }    
     public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

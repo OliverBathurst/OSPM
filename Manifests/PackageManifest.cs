@@ -4,7 +4,6 @@ using System.Collections.Generic;
 [Serializable]
 public class PackageManifest : IManifest {
     public List<Operation> Operations;
-    public bool? CompressionEnabled { get; set; }
     public bool? EnforceHashCheck { get; set; }
     public string Hash { get; set; }
     public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
