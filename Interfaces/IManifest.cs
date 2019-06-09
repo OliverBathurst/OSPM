@@ -1,4 +1,4 @@
 public interface IManifest {
-    string ManifestName { get; set; }
+    string ManifestPath { get; set; }
     string Version { get; set; }
 }

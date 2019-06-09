@@ -9,19 +9,21 @@ namespace NetUpdater
         static void Main(string[] args)
         {         
             if(args.Length == 0){
-                //just update using config file
+                new UpdateService(new Context()).ProcessUpdate(new string[0]);
             }
             var additionalArgs = args.Skip(1).ToArray();
-            var context = new Context();
-            switch(args[0]){                
+            switch(args[0]){   
+                case "-uninstall":
+                    new UninstallService(new Context()).ProcessUninstall(additionalArgs);                        
+                    break;             
                 case "-update":
-                    new UpdateService(context).ProcessUpdate(additionalArgs);                        
+                    new UpdateService(new Context()).ProcessUpdate(additionalArgs);                        
                     break;
                 case "-restore":
-                    new RestoreService(context).ProcessRestore(additionalArgs);
+                    new UpdateService(new Context()).ProcessUpdate(additionalArgs);
                     break;
                 case "-delete":
-                    new DeleteService(context).ProcessDelete(additionalArgs);
+                    new DeleteService(new Context()).ProcessDelete(additionalArgs);
                     break;
                 default:
                     throw new Exception("Invalid arguments supplied");

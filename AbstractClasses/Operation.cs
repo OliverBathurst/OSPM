@@ -8,8 +8,8 @@ public abstract class Operation {
     public int OperationNumber { get; set; }
     [JsonProperty(PropertyName = "OperationType")]
     public OperationType? OperationType;
-    [JsonProperty(PropertyName = "FilePath")]
-    public string FilePath { get; set; }
+    [JsonProperty(PropertyName = "FilePaths")]
+    public List<string> FilePaths { get; set; }
     [JsonProperty(PropertyName = "Destination")]
     public string Destination { get; set; }
     [JsonProperty(PropertyName = "RenameString")]

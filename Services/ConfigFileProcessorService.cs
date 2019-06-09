@@ -3,10 +3,14 @@ using System.IO;
 using Json.Net;
 
 public class ConfigFileProcessorService {
-    private string FilePath;
     public ConfigFileProcessorService(){}
-
     public ConfigurationManifest Process(string filePath){
-        return JsonNet.Deserialize<ConfigurationManifest>(File.ReadAllText(filePath));
+        var deserialised = JsonNet.Deserialize<ConfigurationManifest>(File.ReadAllText(filePath));
+        if(deserialised == null){
+            throw new Exception($"Failed to deserialise configuration file at {filePath}");
+        }else{
+            deserialised.ManifestPath = filePath;
+            return deserialised;
+        }        
     }
 }

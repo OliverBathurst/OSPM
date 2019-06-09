@@ -1,10 +1,15 @@
 using System;
+using Newtonsoft.Json;
 
 [Serializable]
 public class RootPackageManifest : IManifest {
+    [JsonProperty(PropertyName = "Hash")]
     public string Hash { get; set; }
+    [JsonProperty(PropertyName = "EnforceHashCheck")]
     public bool? EnforceHashCheck { get; set; }
+    [JsonProperty(PropertyName = "GlobalIgnoreWarnings")]
     public bool? GlobalIgnoreWarnings { get; set; }
-    public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string ManifestName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    [JsonProperty(PropertyName = "Version")]
+    public string Version { get; set; }
+    public string ManifestPath { get; set; }
 }

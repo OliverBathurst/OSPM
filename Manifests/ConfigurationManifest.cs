@@ -1,23 +1,28 @@
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
 
 [Serializable]
-public class ConfigurationManifest : IManifest{
-    //todo add json property attributes
+public class ConfigurationManifest : IManifest {
+    [JsonProperty(PropertyName = "ServerURL")]
     public string ServerURL { get; set; }
+    [JsonProperty(PropertyName = "TempDir")]
     public string TempDir { get; set; }
+    [JsonProperty(PropertyName = "BackupDir")]
     public string BackupDir { get; set; }
+    [JsonProperty(PropertyName = "ConfigVersion")]
     public string ConfigVersion { get; set; }
+    [JsonProperty(PropertyName = "CurrentAppVersion")]
     public string CurrentAppVersion { get; set; }
-    
-    //allow custom file paths to be defined in manifest by pointing to registry key entries
-    //e.g. regpath1 : "HKEY...", so when an operation is being performed it'll replace every
-    //instance of "regpath1" in the filepath to the filepath declared in the reg key
+    [JsonProperty(PropertyName = "CustomRegistryPaths")]
     public Dictionary<string, string> CustomRegistryPaths { get; set; }
+    [JsonProperty(PropertyName = "LicenseKey")]
     public string LicenseKey { get; set; }
+    [JsonProperty(PropertyName = "IgnoreWarnings")]
     public bool? IgnoreWarnings { get; set; }
-    public ConnectionInfoManifest ConnectionInfo { get; set; }    
-    public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    //set manually, manifest name will not be in manifest, will help debugging
-    public string ManifestName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    [JsonProperty(PropertyName = "ConnectionInfo")]
+    public ConnectionInfo ConnectionInfo { get; set; }  
+    [JsonProperty(PropertyName = "Version")]  
+    public string Version { get; set; }
+    public string ManifestPath { get; set; }
 }

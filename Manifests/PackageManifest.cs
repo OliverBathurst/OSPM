@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 [Serializable]
 public class PackageManifest : IManifest {
+    [JsonProperty(PropertyName = "Operations")]
     public List<Operation> Operations;
+    [JsonProperty(PropertyName = "EnforceHashCheck")]
     public bool? EnforceHashCheck { get; set; }
+    [JsonProperty(PropertyName = "Hash")]
     public string Hash { get; set; }
-    public string Version { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    //manifest name (file name) will be set by the program and won't be in the manifest itself
-    public string ManifestName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    [JsonProperty(PropertyName = "Version")]
+    public string Version { get; set; }
+    public string ManifestPath { get; set; }
 }

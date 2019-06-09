@@ -1,22 +1,18 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
 public class OperationValidatorService : IValidator<Operation>
 {
-    public Dictionary<MessageType, string> Validate(Operation ObjectToValidate)
+    public List<KeyValuePair<MessageType, string>> Validate(Operation ObjectToValidate)
     {
-
-
-        //TODO: CHANGE ALL DICTIONARY OBJECTS IN THIS PROJECT TO LIST<KEYVALUEPAIR<MESSAGETYPE,STRING>>
-
-
-        var Errors = new Dictionary<MessageType, string>();
+        var Errors = new List<KeyValuePair<MessageType, string>>();
         if(ObjectToValidate == null)
-            Errors.Add(MessageType.Error, "Operation is null");
+            Errors.Add(new KeyValuePair<MessageType, string>(MessageType.Error, "Operation is null"));
 
         GenericValidation(ObjectToValidate);
 
-        var validationErrors = new Dictionary<MessageType, string>();
+        var validationErrors = new List<KeyValuePair<MessageType, string>>();
         switch (ObjectToValidate.OperationType){
             case OperationType.Move:
                 validationErrors = ValidateMoveOperation(ObjectToValidate);                
@@ -25,34 +21,34 @@ public class OperationValidatorService : IValidator<Operation>
                 validationErrors = ValidateRenameOperation(ObjectToValidate);
                 break;
             default:
-                throw new System.Exception($"Illegal or missing operation type, operation number: {ObjectToValidate.OperationNumber}, manifest: {ObjectToValidate.Manifest.ManifestName}");
+                throw new Exception($"Illegal or missing operation type, operation number: {ObjectToValidate.OperationNumber}, manifest: {ObjectToValidate.Manifest.ManifestPath}");
         }
         
         foreach(var validationError in validationErrors)
-            Errors.Add(validationError.Key, validationError.Value);
+            Errors.Add(new KeyValuePair<MessageType, string>(validationError.Key, validationError.Value));
 
         return Errors;    
     }
 
     //All operations need a filepath so we can call this before specific validation
-    private Dictionary<MessageType, string> GenericValidation(Operation ObjectToValidate){
-        if(ObjectToValidate.FilePath == null){
+    private List<KeyValuePair<MessageType, string>> GenericValidation(Operation ObjectToValidate){
+        if(ObjectToValidate.FilePaths == null){
             //throw error
         }
-        return new Dictionary<MessageType, string>();
+        return new List<KeyValuePair<MessageType, string>>();
     }
 
-    private Dictionary<MessageType, string> ValidateMoveOperation(Operation ObjectToValidate){
+    private List<KeyValuePair<MessageType, string>> ValidateMoveOperation(Operation ObjectToValidate){
         if(ObjectToValidate.Destination == null){
 
         }
-        return new Dictionary<MessageType, string>();
+        return new List<KeyValuePair<MessageType, string>>();
     }
 
-    private Dictionary<MessageType, string> ValidateRenameOperation(Operation ObjectToValidate){
+    private List<KeyValuePair<MessageType, string>> ValidateRenameOperation(Operation ObjectToValidate){
         if(ObjectToValidate.RenameString == null){
 
         }
-        return new Dictionary<MessageType, string>();
+        return new List<KeyValuePair<MessageType, string>>();
     }
 }

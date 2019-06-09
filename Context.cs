@@ -1,9 +1,7 @@
 public class Context {
     private UpdateService _updateService;
     private TransactionService _transactionService;
-    private RestoreService _restoreService;
     private OperationValidatorService _operationValidatorService;
-    private FlagService _flagService;
     private FileValidatorService _fileValidatorService;
     private FileDownloaderService _fileDownloaderService;
     private DeleteService _deleteService;
@@ -14,10 +12,8 @@ public class Context {
     public Context() => InitialiseContext();
     public TransactionService TransactionService(Context context, ITransaction TransactionToTransact = null, bool ignoreWarnings = false) => new TransactionService(this, TransactionToTransact, ignoreWarnings);
     public UpdateService UpdateService => new UpdateService(this);
-    public RestoreService RestoreService => new RestoreService(this);
     public DeleteService DeleteService => new DeleteService(this);
     public OperationValidatorService OperationValidatorService => _operationValidatorService;
-    public FlagService FlagService => _flagService;
     public FileValidatorService FileValidatorService => _fileValidatorService; 
     public FileDownloaderService FileDownloaderService => _fileDownloaderService;
     public ConfigurationManifestService ConfigurationManifestService => _configurationManifestService;
@@ -26,7 +22,6 @@ public class Context {
     public LoggerService LoggerService => _loggerService;
     private void InitialiseContext(){
         _operationValidatorService = new OperationValidatorService();
-        _flagService = new FlagService();
         _fileValidatorService = new FileValidatorService();
         _fileDownloaderService = new FileDownloaderService();
         _configurationManifestService = new ConfigurationManifestService();

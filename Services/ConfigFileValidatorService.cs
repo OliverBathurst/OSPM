@@ -4,7 +4,9 @@ using System.IO;
 public class ConfigurationManifestValidatorService : IValidator<ConfigurationManifest> {
     public ConfigurationManifestValidatorService(){}
 
-    public Dictionary<MessageType, string> Validate(ConfigurationManifest config){
-        return new Dictionary<MessageType, string>();
+    public List<KeyValuePair<MessageType, string>> Validate(ConfigurationManifest config){
+        if(config == null)
+            throw new Exception("Configuration manifest is null");
+        return new List<KeyValuePair<MessageType, string>>();
     }
 }
