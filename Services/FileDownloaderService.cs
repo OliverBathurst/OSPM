@@ -1,8 +1,7 @@
-using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-public class FileDownloaderService {
+public class FileDownloaderService : IFileDownloaderService{
     public FileDownloaderService(){}
     public string GetFileURI(ConfigurationManifest config, string path = null){
         var FilePath = path != null ? path : config.ServerURL;
@@ -24,8 +23,8 @@ public class FileDownloaderService {
 
     private string DownloadRemoteUpdate(ConfigurationManifest config, string fpath){        
         var path = string.Empty;
-        if(config.TempDir != null){
-            path = config.TempDir;
+        if(config.WorkingDir != null){
+            path = config.WorkingDir;
         }
 
         using (var client = new WebClient()){

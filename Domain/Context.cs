@@ -22,7 +22,7 @@ public class Context {
     public LoggerService LoggerService => _loggerService;
     private void InitialiseContext(){
         _operationValidatorService = new OperationValidatorService();
-        _fileValidatorService = new FileValidatorService();
+        _fileValidatorService = new FileValidatorService(this);
         _fileDownloaderService = new FileDownloaderService();
         _configurationManifestService = new ConfigurationManifestService();
         _configurationManifestValidatorService = new ConfigurationManifestValidatorService();

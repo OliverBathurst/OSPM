@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-public class ConfigurationManifestValidatorService : IValidator<ConfigurationManifest> {
+public class ConfigurationManifestValidatorService : IValidator<ConfigurationManifest>, IConfigurationManifestValidatorService {
     public ConfigurationManifestValidatorService(){}
 
     public List<KeyValuePair<MessageType, string>> Validate(ConfigurationManifest config){

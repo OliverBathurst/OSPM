@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
-public class OperationValidatorService : IValidator<Operation>
-{
+public class OperationValidatorService : DomainValidator<Operation>, IValidator<Operation>, IOperationValidatorService {
     public List<KeyValuePair<MessageType, string>> Validate(Operation ObjectToValidate)
     {
         var Errors = new List<KeyValuePair<MessageType, string>>();

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public class LoggerService {
+public class LoggerService : ILoggerService {
     public LoggerService(){}
 
     public void LogTransactionInformation((Dictionary<MessageType, string> TransactionLog, int ErrorCount) TransactionData){
@@ -12,6 +12,12 @@ public class LoggerService {
             foreach(var pair in TransactionData.TransactionLog)
                 Console.WriteLine($"INFO: {pair.Value}");    
         }   
+    }
+
+    public void PrintFatalError(Exception exception){
+        Console.ForegroundColor = ConsoleColor.Red;        
+        Console.WriteLine(exception.Message);
+        throw exception;             
     }
 
     private void PrintError(string errorText){

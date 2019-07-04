@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 
-public class UpdateService{
+public class UpdateService : IUpdateService {
     private Context _context;
     public UpdateService(Context context) => _context = context;
     private void Update(string filePath, bool ignoreWarnings = false){

@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 
-public class DeleteService{
+public class DeleteService : IDeleteService {
     private Context _context;
     public DeleteService(Context context) => _context = context;
     private void Delete(string filePath, bool ignorewarnings = false){}

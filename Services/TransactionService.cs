@@ -1,7 +1,6 @@
 using System.Linq;
-using System.Collections.Generic;
 
-public class TransactionService {
+public class TransactionService : ITransactionService {
     private ITransaction Transaction;
     private Context _context;
     private bool IgnoreWarnings = false;

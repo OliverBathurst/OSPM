@@ -25,6 +25,12 @@ namespace NetUpdater
                 case "-delete":
                     new DeleteService(new Context()).ProcessDelete(additionalArgs);
                     break;
+                case "-register":
+                    new ManifestRegistrationService(new Context(), true).ProcessRegistration(additionalArgs);
+                    break;
+                case "-unregister":
+                    new ManifestRegistrationService(new Context(), false).ProcessRegistration(additionalArgs);
+                    break;
                 default:
                     throw new Exception("Invalid arguments supplied");
             }            
