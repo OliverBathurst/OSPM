@@ -1,0 +1,11 @@
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\bin\Debug\netcoreapp2.2\NetUpdater.deps.json
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\bin\Debug\netcoreapp2.2\NetUpdater.runtimeconfig.json
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\bin\Debug\netcoreapp2.2\NetUpdater.runtimeconfig.dev.json
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\bin\Debug\netcoreapp2.2\NetUpdater.dll
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\bin\Debug\netcoreapp2.2\NetUpdater.pdb
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.csprojAssemblyReference.cache
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.csproj.CoreCompileInputs.cache
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.AssemblyInfoInputs.cache
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.AssemblyInfo.cs
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.dll
+C:\Users\Oliver\Documents\NetUpdate\NetUpdater\obj\Debug\netcoreapp2.2\NetUpdater.pdb

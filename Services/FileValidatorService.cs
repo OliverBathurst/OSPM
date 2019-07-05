@@ -1,10 +1,7 @@
 using System;
 using System.IO;
 public class FileValidatorService : IFileValidatorService {
-    private readonly Context _context;
-    public FileValidatorService(Context context){
-        _context = context;
-    }
+    public FileValidatorService(){}
 
     public bool ValidateFilePath(string filePath, FileType fileType = FileType.Undefined){
         if(fileType == FileType.Package){

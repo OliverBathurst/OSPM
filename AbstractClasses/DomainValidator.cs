@@ -23,11 +23,15 @@ public abstract class DomainValidator<T> {
         return dictionary;
     }
 
-    List<KeyValuePair<MessageType, string>> Validate(T ObjectToValidate, string[] propertyNames){
+    void Validate(T ObjectToValidate, string[] propertyNames){
         if(ObjectToValidate == null){
             throw new Exception("Object being validated is null");
         }
         //todo
-        return new List<KeyValuePair<MessageType, string>>();
+    }
+
+    void ValidateAndThen(T ObjectToValidate, string[] propertyNames, Action action){
+        Validate(ObjectToValidate, propertyNames);
+        action();
     }
 }

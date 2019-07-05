@@ -5,7 +5,7 @@ public class ConfigurationManifestService : IConfigurationManifestService {
     public ConfigurationManifestService(){}
 
     public ConfigurationManifest GetConfig(){
-        return File.Exists(CONFIG_PATH) ? new ConfigFileProcessorService().Process(CONFIG_PATH) : null;  
+        return File.Exists(CONFIG_PATH) ? ServiceProvider.GetService<IConfigurationFileProcessorService>().Process(CONFIG_PATH) : null;  
     }
 
     public string GetWorkingDirectory(){

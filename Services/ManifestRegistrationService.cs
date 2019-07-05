@@ -1,9 +1,7 @@
 using System;
 public class ManifestRegistrationService : IManifestRegistrationService {
-    private readonly Context _context;
     private readonly bool IsRegistering;
-    public ManifestRegistrationService(Context context, bool isRegistering){
-        _context = context;
+    public ManifestRegistrationService(bool isRegistering){
         IsRegistering = isRegistering;
     }
     public void ProcessRegistration(string[] args){
@@ -11,7 +9,7 @@ public class ManifestRegistrationService : IManifestRegistrationService {
             throw new Exception("Invalid arguments supplied");
         }
 
-        _context.ConfigurationFileProcessorService.Process(args[0]);
-        new InstallsService(_context).Install(args[0]);
+        ServiceProvider.GetService<IConfigurationFileProcessorService>().Process(args[0]);
+        new InstallsService().Install(args[0]);
     }
 }

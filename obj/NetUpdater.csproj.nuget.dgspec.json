@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {}
+    "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {
+    "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
+        "projectUniqueName": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
         "projectName": "NetUpdater",
-        "projectPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
+        "projectPath": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
         "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\obj\\",
+        "outputPath": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,6 +42,10 @@
             "Json.Net": {
               "target": "Package",
               "version": "[1.0.16, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

@@ -2,14 +2,11 @@ using System.Linq;
 
 public class TransactionService : ITransactionService {
     private ITransaction Transaction;
-    private Context _context;
     private bool IgnoreWarnings = false;
-    public TransactionService(Context context, ITransaction TransactionToTransact){
-        _context = context;
+    public TransactionService(ITransaction TransactionToTransact){
         Transaction = TransactionToTransact;        
     } 
-    public TransactionService(Context context, ITransaction TransactionToTransact, bool ignoreWarnings){
-        _context = context;
+    public TransactionService(ITransaction TransactionToTransact, bool ignoreWarnings){
         Transaction = TransactionToTransact;
         IgnoreWarnings = ignoreWarnings;
     }
@@ -21,7 +18,7 @@ public class TransactionService : ITransactionService {
 
         for(var i = 0; i < transactionObj.TransactionOperations?.Count; i++){
             var outcome = transactionObj.TransactionOperations[i].RunOperation();
-            _context.LoggerService.LogTransactionInformation(outcome);                
+            ServiceProvider.GetService<ILoggerService>().LogTransactionInformation(outcome);                
             if(outcome.ErrorCount > 0 && !IgnoreWarnings){
                 Transact(new Transaction {TransactionOperations = transactionObj.TransactionOperations.GetRange(0, i+1).Select(x => x.GenerateReverseOperation()).ToList()});
                 return;

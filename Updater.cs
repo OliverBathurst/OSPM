@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Xml.Linq;
 using System;
 
 namespace NetUpdater
@@ -8,28 +7,30 @@ namespace NetUpdater
     {
         static void Main(string[] args)
         {         
+            ServiceProvider.Initialize();
+            
             if(args.Length == 0){
-                new UpdateService(new Context()).ProcessUpdate(new string[0]);
+                new UpdateService().ProcessUpdate(new string[0]);
             }
             var additionalArgs = args.Skip(1).ToArray();
             switch(args[0]){   
                 case "-uninstall":
-                    new UninstallService(new Context()).ProcessUninstall(additionalArgs);                        
+                    new UninstallService().ProcessUninstall(additionalArgs);                        
                     break;             
                 case "-update":
-                    new UpdateService(new Context()).ProcessUpdate(additionalArgs);                        
+                    new UpdateService().ProcessUpdate(additionalArgs);                        
                     break;
                 case "-restore":
-                    new UpdateService(new Context()).ProcessUpdate(additionalArgs);
+                    new UpdateService().ProcessUpdate(additionalArgs);
                     break;
                 case "-delete":
-                    new DeleteService(new Context()).ProcessDelete(additionalArgs);
+                    new DeleteService().ProcessDelete(additionalArgs);
                     break;
                 case "-register":
-                    new ManifestRegistrationService(new Context(), true).ProcessRegistration(additionalArgs);
+                    new ManifestRegistrationService(true).ProcessRegistration(additionalArgs);
                     break;
                 case "-unregister":
-                    new ManifestRegistrationService(new Context(), false).ProcessRegistration(additionalArgs);
+                    new ManifestRegistrationService(false).ProcessRegistration(additionalArgs);
                     break;
                 default:
                     throw new Exception("Invalid arguments supplied");

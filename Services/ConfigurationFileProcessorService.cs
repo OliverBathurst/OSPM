@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using Json.Net;
 
-public class ConfigFileProcessorService : IConfigFileProcessorService{
-    public ConfigFileProcessorService(){}
+public class ConfigurationFileProcessorService : IConfigurationFileProcessorService{
+    public ConfigurationFileProcessorService(){}
     public ConfigurationManifest Process(string filePath){
         if(filePath == null || Path.GetExtension(filePath) != ".json"){
             throw new Exception($"Failed to open configuration file at {filePath}");
