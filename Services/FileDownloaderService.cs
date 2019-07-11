@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.RegularExpressions;
 
-public class FileDownloaderService : IFileDownloaderService{
+public class FileDownloaderService : IFileDownloaderService {
     public FileDownloaderService(){}
     public string GetFileURI(ConfigurationManifest config, string path = null){
         var FilePath = path != null ? path : config.ServerURL;

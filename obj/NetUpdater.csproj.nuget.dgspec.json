@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {}
+    "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {
+    "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
+        "projectUniqueName": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
         "projectName": "NetUpdater",
-        "projectPath": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
+        "projectPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
         "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\obj\\",
+        "outputPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.Win32.Registry": {
+              "target": "Package",
+              "version": "[4.4.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

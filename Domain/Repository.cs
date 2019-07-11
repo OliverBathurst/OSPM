@@ -11,7 +11,9 @@ public static class Repository {
                 .First()
                 .Value;    
 
-    public static void Put<T>(T item){
-        cache.Add(typeof(T), item);
+    public static void Put<T>(T item){    
+        if(typeof(T).IsInterface && !item.GetType().IsInterface && !item.GetType().IsAbstract)  {
+            cache.Add(typeof(T), item);//check that type arg is an interface and the item is a concrete type
+        }
     }
 }

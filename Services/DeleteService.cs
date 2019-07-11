@@ -1,14 +1,17 @@
 using System;
 
 public class DeleteService : IDeleteService {
-    public DeleteService(){}
+    private readonly IFileValidatorService _fileValidatorService;
+    public DeleteService(){
+        _fileValidatorService = StaticData.Get<IFileValidatorService>();
+    }
     private void Delete(string filePath, bool ignorewarnings = false){}
     public void ProcessDelete(string[] args){
         if(args.Length == 0){
             throw new Exception("No arguments specified");
         }            
 
-        if(!ServiceProvider.GetService<IFileValidatorService>().ValidateFilePath(args[0])){
+        if(!_fileValidatorService.ValidateFilePath(args[0])){
             throw new Exception($"Invalid file specified {args[0]}");
         }      
 

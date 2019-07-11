@@ -1,31 +1,38 @@
 using System;
 
 public class UpdateService : IUpdateService {
-    public UpdateService(){}
-    private void Update(string filePath, bool ignoreWarnings = false){
-        
+    private readonly IConfigurationManifestService _configurationManifestService;
+    private readonly IConfigurationManifestValidatorService _configurationManifestValidatorService;
+    private readonly IFileDownloaderService _fileDownloaderService;
+    private readonly IFileValidatorService _fileValidatorService;
+    public UpdateService(){
+        _configurationManifestService = StaticData.Get<IConfigurationManifestService>();
+        _configurationManifestValidatorService = StaticData.Get<IConfigurationManifestValidatorService>();
+        _fileDownloaderService = StaticData.Get<IFileDownloaderService>();
+        _fileValidatorService = StaticData.Get<IFileValidatorService>();
     }
+    
     public void ProcessUpdate(string[] args){
-        var ConfigFile = ServiceProvider.GetService<IConfigurationManifestService>().GetConfig();
+        var ConfigFile = _configurationManifestService.GetConfig();
         if(args.Length == 0){            
             if(ConfigFile != null){
-                ServiceProvider.GetService<IConfigurationManifestValidatorService>().Validate(ConfigFile);                
-                Update(ServiceProvider.GetService<IFileDownloaderService>().GetFileURI(ConfigFile));
+                _configurationManifestValidatorService.Validate(ConfigFile);                
+                Update(_fileDownloaderService.GetFileURI(ConfigFile));
             }else{
                 throw new Exception("No config file found");
             }    
         }else if(args.Length > 0){
-            if(ServiceProvider.GetService<IFileDownloaderService>().IsLocalPath(args[0])){
-                if(!ServiceProvider.GetService<IFileValidatorService>().ValidateFilePath(args[0], FileType.Package)){
+            if(_fileDownloaderService.IsLocalPath(args[0])){
+                if(!_fileValidatorService.ValidateFilePath(args[0], FileType.Package)){
                     throw new Exception($"Invalid file specified {args[0]}");
                 }
             }     
             if(args.Length == 1){
-                Update(ServiceProvider.GetService<IFileDownloaderService>().GetFileURI(ConfigFile, args[0]));
+                Update(_fileDownloaderService.GetFileURI(ConfigFile, args[0]));
             }else if(args.Length == 2){
                 switch(args[1]){
                     case "-ignorewarnings":
-                        Update(ServiceProvider.GetService<IFileDownloaderService>().GetFileURI(ConfigFile, args[0]), true);
+                        Update(_fileDownloaderService.GetFileURI(ConfigFile, args[0]), true);
                         break;     
                     default:
                         throw new Exception($"Invalid argument supplied {args[1]}");               
@@ -34,5 +41,9 @@ public class UpdateService : IUpdateService {
                 throw new Exception("Invalid arguments supplied");
             }        
         }
+    }
+
+    private void Update(string filePath, bool ignoreWarnings = false){
+        
     }
 }

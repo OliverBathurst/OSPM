@@ -6,20 +6,36 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Json.Net;
 
 public class InstallsService : IInstallsService {
-    public InstallsService(){}
-
-    public void Install(string ManifestPath){
-        ProcessInstall(ManifestPath);
+    private readonly ILoggerService _loggerService;
+    private readonly IConfigurationManifestService _configurationManifestService;
+    public InstallsService(){
+        _loggerService = StaticData.Get<ILoggerService>();
+        _configurationManifestService = StaticData.Get<IConfigurationManifestService>();
     }
 
-    public void Uninstall(string ManifestPath){                
-        ProcessUninstall(ManifestPath);
+    public void Install(string ManifestPath){ 
+        var installs = GetInstalls();       
+        installs.Add(
+            new Install {
+                AppManifestPath = ManifestPath
+            }
+        );
+        Merge(installs, ManifestPath);
+    }
+
+    public void Uninstall(string ManifestPath){
+        Merge(GetInstalls().Where(x => x.AppManifestPath != ManifestPath), ManifestPath);
+    }
+
+    public void ProcessUninstall(string[] args)
+    {
+        throw new NotImplementedException();
     }
 
     public InstallsManifest GetInstallsManifest(string ManifestPath){
         var InstallsManifest = JsonNet.Deserialize<InstallsManifest>(File.ReadAllText(ManifestPath));
         if(InstallsManifest == null){
-            ServiceProvider.GetService<ILoggerService>().PrintFatalError(
+            _loggerService.PrintFatalError(
                 new Exception($"Cannot deserialize installs file at {ManifestPath}"));
         }
         return InstallsManifest;
@@ -31,7 +47,7 @@ public class InstallsService : IInstallsService {
             .ToList();
         
         if(files == null){
-            ServiceProvider.GetService<ILoggerService>().PrintFatalError(
+            _loggerService.PrintFatalError(
                 new Exception($"Unable to locate the installs file in {WorkingDir}"));
         }
 
@@ -43,23 +59,9 @@ public class InstallsService : IInstallsService {
     }
 
     public List<Install> GetInstalls(){
-        return GetInstallsManifest(GetInstallsFile(ServiceProvider.GetService<IConfigurationManifestService>().GetWorkingDirectory()))
+        return GetInstallsManifest(GetInstallsFile(_configurationManifestService.GetWorkingDirectory()))
                         .Installs
                         .ToList();
-    }
-
-    private void ProcessInstall(string ManifestPath){ 
-        var installs = GetInstalls();       
-        installs.Add(
-            new Install {
-                AppManifestPath = ManifestPath
-            }
-        );
-        Merge(installs, ManifestPath);
-    }
-
-    private void ProcessUninstall(string ManifestPath){
-        Merge(GetInstalls().Where(x => x.AppManifestPath != ManifestPath), ManifestPath);
     }
 
     private void Merge(IEnumerable<Install> list, string ManifestPath){
@@ -68,7 +70,7 @@ public class InstallsService : IInstallsService {
             ManifestPath = ManifestPath
         };
         
-        var file = GetInstallsFile(ServiceProvider.GetService<IConfigurationManifestService>().GetWorkingDirectory());
+        var file = GetInstallsFile(_configurationManifestService.GetWorkingDirectory());
         using(var fs = new FileStream(file, FileMode.Create, FileAccess.Write)){
             new BinaryFormatter().Serialize(fs, manifest);
             fs.Close();   
@@ -76,13 +78,18 @@ public class InstallsService : IInstallsService {
     }
 
     private string CreateNewInstallsFile(string WorkingDir){
-        var path = WorkingDir + "'\'installs.json";
-        if(Directory.Exists(WorkingDir)){
-            using(var fs = File.Create(path)){
-                new BinaryFormatter().Serialize(fs, new InstallsManifest());
-                fs.Close();
-            }
+        if(!Directory.Exists(WorkingDir))
+            throw new Exception($"Working directory does not exist {WorkingDir}");
+
+        var path = WorkingDir.EndsWith("\'") 
+            ? WorkingDir.Remove(WorkingDir.Length - 1) + "'\'installs.json" 
+            : WorkingDir + "'\'installs.json";
+        
+        using(var fs = File.Create(path)){
+            new BinaryFormatter().Serialize(fs, new InstallsManifest());
+            fs.Close();
         }
+        
         return File.Exists(path) ? path : null;      
     }
 }

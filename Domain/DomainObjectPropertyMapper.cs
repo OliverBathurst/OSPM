@@ -10,27 +10,16 @@ public class DomainObjectPropertyMapper<T> : IDomainObjectPropertyMapper<T> {
     public Dictionary<string, string> GetMappings(Type type, string[] keys) => GetMappingsWithProperties(type, keys);
 
     private Dictionary<string, string> Mappings(Type type){
-        if(type == typeof(Install)){
-            return new Dictionary<string, string>();
-            //add more custom mappings below when needed
-        }else{
-           var dictionary = new Dictionary<string, string>();
-           var props = type.GetProperties().Select(x => x.Name);
-           foreach(var prop in props){
-               dictionary.Add(prop, prop);
-           }
-           return dictionary;
-        }
+        //add custom mappings here when needed
+        var mappings = type.GetProperties().Select(x => x.Name);
+        return mappings.ToDictionary(prop => prop, prop => prop);       
     }
 
     private Dictionary<string, string> GetMappingsWithProperties(Type type, string[] properties){
-        var mappingsDictionary = new Dictionary<string, string>();
-        if(properties == null || properties.Length == 0) return mappingsDictionary;
+        if(properties == null || properties.Length == 0) return new Dictionary<string, string>();
         var mappings = Mappings(type);
-        foreach(var prop in properties){
-            mappingsDictionary.Add(prop, mappings[prop]);
-        }
-        return mappingsDictionary;
+
+        return properties.ToDictionary(prop => prop, prop => mappings[prop]);
     }
 
     private string GetMappingValue(Type type, string property){

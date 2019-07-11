@@ -7,30 +7,30 @@ namespace NetUpdater
     {
         static void Main(string[] args)
         {         
-            ServiceProvider.Initialize();
+            StaticData.Initialize();
             
             if(args.Length == 0){
-                new UpdateService().ProcessUpdate(new string[0]);
+                StaticData.Get<IUpdateService>().ProcessUpdate(new string[0]);
             }
             var additionalArgs = args.Skip(1).ToArray();
             switch(args[0]){   
                 case "-uninstall":
-                    new UninstallService().ProcessUninstall(additionalArgs);                        
+                    StaticData.Get<IInstallsService>().ProcessUninstall(additionalArgs);                        
                     break;             
-                case "-update":
-                    new UpdateService().ProcessUpdate(additionalArgs);                        
+                case "-update":                
+                    StaticData.Get<IUpdateService>().ProcessUpdate(additionalArgs);                        
                     break;
                 case "-restore":
-                    new UpdateService().ProcessUpdate(additionalArgs);
+                    StaticData.Get<IUpdateService>().ProcessUpdate(additionalArgs);
                     break;
                 case "-delete":
-                    new DeleteService().ProcessDelete(additionalArgs);
+                    StaticData.Get<IDeleteService>().ProcessDelete(additionalArgs);
                     break;
                 case "-register":
-                    new ManifestRegistrationService(true).ProcessRegistration(additionalArgs);
+                    StaticData.Get<IManifestRegistrationService>().ProcessRegistration(additionalArgs, true);
                     break;
                 case "-unregister":
-                    new ManifestRegistrationService(false).ProcessRegistration(additionalArgs);
+                    StaticData.Get<IManifestRegistrationService>().ProcessRegistration(additionalArgs, false);
                     break;
                 default:
                     throw new Exception("Invalid arguments supplied");

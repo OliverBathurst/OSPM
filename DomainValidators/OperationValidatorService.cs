@@ -28,7 +28,7 @@ public class OperationValidatorService : DomainValidator<Operation>, IValidator<
         return Errors;    
     }
 
-    //All operations need a filepath so we can call this before specific validation
+    //All operations need a filepath so we can check this before specific validation
     private List<KeyValuePair<MessageType, string>> GenericValidation(Operation ObjectToValidate){
         if(ObjectToValidate.FilePaths == null){
             //throw error
