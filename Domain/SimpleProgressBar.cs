@@ -37,13 +37,12 @@ public class SimpleProgressBar : DomainObject<SimpleProgressBar> {
 
     public string ProgressBarString { get => ProgressBarIncrementString; set => ProgressBarIncrementString = value; }
 
-    SimpleProgressBar Initialise(bool writeBar = true){
+    void Initialise(bool writeBar = true){
         lock(ConsoleWriterLock){
             LineIndex = Console.CursorTop;
             Console.SetCursorPosition(0, LineIndex);
             Console.Write(string.Format(StartingString + new String(PadChar, ProgressBarWidth) + EndingString + " {0}%", Progress));
             HasInitialised = true;
-            return this;
         }
     }
 
@@ -60,6 +59,11 @@ public class SimpleProgressBar : DomainObject<SimpleProgressBar> {
                 }  
             }          
         }        
+    }
+
+    int GetCompleteWidth(){
+        return 1;
+        //return sum of all elements [ + number of units + ] + 0 + % = n units wide
     }
 
     void CompleteAndThen(Action action){
