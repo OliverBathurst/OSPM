@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Transaction : ITransaction
+public class Transaction : DomainObject<Transaction>, ITransaction
 {
     private Guid TransactionIdentifier;
     private List<Operation> Operations;
