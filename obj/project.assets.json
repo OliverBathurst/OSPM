@@ -996,11 +996,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
-      "projectName": "NetUpdater",
-      "projectPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\NetUpdater.csproj",
+      "projectUniqueName": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj",
+      "projectName": "OSPM",
+      "projectPath": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj",
       "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Oliver\\Documents\\NetUpdate\\NetUpdater\\obj\\",
+      "outputPath": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
