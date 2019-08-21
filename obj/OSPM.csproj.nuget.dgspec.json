@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj": {}
+    "C:\\Users\\Oliver\\Documents\\OSPM\\ospm\\OSPM.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj": {
+    "C:\\Users\\Oliver\\Documents\\OSPM\\ospm\\OSPM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj",
+        "projectUniqueName": "C:\\Users\\Oliver\\Documents\\OSPM\\ospm\\OSPM.csproj",
         "projectName": "OSPM",
-        "projectPath": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\OSPM.csproj",
+        "projectPath": "C:\\Users\\Oliver\\Documents\\OSPM\\ospm\\OSPM.csproj",
         "packagesPath": "C:\\Users\\Oliver\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Oliver\\Documents\\OSPM\\OSPM\\obj\\",
+        "outputPath": "C:\\Users\\Oliver\\Documents\\OSPM\\ospm\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
